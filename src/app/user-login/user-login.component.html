@@ -1,0 +1,68 @@
+<div class="container login-container">
+
+  <div class="col-lg-4">
+    <p></p>
+  </div>
+  <div class="col-lg-4 center-block full-height">
+    <div class="form-group form-signin">
+      <h2 class="form-signin-heading" style="text-align: left;">Welcome back,</h2>
+      <input class="form-control form-control-lg" type="email" placeholder="Email" id="email-text-input"
+             [(ngModel)]="inputEmail" (ngModelChange)="onFormChange($event)">
+      <input class="form-control form-control-lg" type="password" placeholder="Password" id="password-text-input"
+             [(ngModel)]="inputPassword" (ngModelChange)="onFormChange($event)">
+
+    </div>
+
+    <div class="" style="text-align: center">
+      <button type="submit" class="btn btn-primary btn-lg col-xs-12" (click)="doLoginWithEmail()" [disabled]="!isLoginFormReady"><i class="fa fa-envelope"></i> Sign-In with Email
+      </button>
+      <div class="col-lg-12">
+        <hr class="light"/>
+      </div>
+
+      <i *ngIf="showProgress" class="spinner fa fa-circle-o-notch fa-3 fa-spin"
+         style="font-size: 3em !important;"></i>
+    </div>
+
+    <div class="form-group form-signin">
+      <h2 class="form-signin-heading" style="text-align: left;">Sign Up</h2>
+
+      <input class="form-control form-control-lg" type="email" placeholder="Email" id="email-signup-text-input"
+             [(ngModel)]="inputSignupEmail" (ngModelChange)="onFormChange($event)">
+      <input class="form-control form-control-lg" type="password" placeholder="**********" id="password-signup-text-input"
+             [(ngModel)]="inputSignupPassword" (ngModelChange)="onFormChange($event)">
+      <input class="form-control form-control-lg" type="text" placeholder="First Name" id="firstname-signup-text-input"
+             [(ngModel)]="inputSignupFirstName" (ngModelChange)="onFormChange($event)">
+      <input class="form-control form-control-lg" type="text" placeholder="Last Name" id="lastname-signup-text-input"
+             [(ngModel)]="inputSignupLastName" (ngModelChange)="onFormChange($event)">
+
+      <div class="btn-group" style="margin: 0 auto;">
+        <label class="btn btn-primary" [(ngModel)]="inputSignupType"
+               btnRadio="user">User</label>
+        <label class="btn btn-primary" [(ngModel)]="inputSignupType" btnRadio="admin">Admin</label>
+      </div>
+
+    </div>
+
+    <div class="" style="text-align: center">
+      <button type="submit" class="btn btn-primary btn-lg col-xs-12" (click)="doSignupWithEmail()" [disabled]="!isSignupFormReady"><i class="fa fa-envelope"></i> Sign Up with Email
+      </button>
+      <div class="col-lg-12">
+        <hr class="light"/>
+      </div>
+
+      <i *ngIf="showProgress" class="spinner fa fa-circle-o-notch fa-3 fa-spin"
+         style="font-size: 3em !important;"></i>
+    </div>
+
+  </div>
+  <div class="col-lg-4">
+    <p></p>
+  </div>
+
+  <alert *ngFor="let alert of alerts;let i = index" [type]="alert.type" dismissOnTimeout="2400">
+    {{ alert?.msg }}
+  </alert>
+
+
+</div>

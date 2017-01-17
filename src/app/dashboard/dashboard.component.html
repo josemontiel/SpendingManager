@@ -1,0 +1,43 @@
+<div>
+  <div class="col-lg-8 nav-panel">
+
+    <h2>My Expenses</h2>
+
+    <header class="navbar navbar-light navbar-static-top">
+      <div class="form-inline float-xs-right">
+        From:
+        <input class="form-control" type="date" placeholder="dd-mm-yyyy" [value]="startDate | date:'yyyy-MM-dd'" (input)="startDate=parseDate($event.target.value)">
+        To:
+        <input class="form-control" type="date" placeholder="dd-mm-yyyy" [value]="endDate | date:'yyyy-MM-dd'" (input)="endDate=parseDate($event.target.value)">
+        <button class="btn btn-outline-secondary" (click)="onDateSendClick()">Send</button>
+      </div>
+    </header>
+
+
+    <div style="text-align: center;">
+      <i *ngIf="showProgress" class="spinner fa fa-circle-o-notch fa-3 fa-spin"></i>
+    </div>
+
+    <div class="grid grid-pad card-block">
+      <div *ngFor="let spend of spenditures" style="overflow-y: auto;">
+
+        <div>
+          <h4>{{spend.description}}</h4>
+          <h5>${{spend.amount}}</h5>
+          <h6>{{spend.when | date:'MMM dd, yyyy HH:mm'}}</h6>
+          <button *ngIf="spend.user_id == userService.user.user_id" class="btn btn-outline-primary" (click)="spenditureSelected=spend">Update</button>
+          <button *ngIf="spend.user_id == userService.user.user_id" class="btn btn-danger" (click)="onSpenditureDeleted(spend)">Delete</button>
+          <hr class="light">
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 nav-panel">
+    <add-spend *ngIf="!spenditureSelected" (onSpenditureAdded)="onSpenditureAdded($event)"></add-spend>
+    <update-spend *ngIf="spenditureSelected" [spending]="spenditureSelected" (onSpenditureUpdated)="onSpenditureUpdated($event)"></update-spend>
+  </div>
+</div>
+

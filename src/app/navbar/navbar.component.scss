@@ -1,0 +1,38 @@
+@import "../variables";
+
+.navbar {
+  border-radius: 0px;
+  //-webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
+  //box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
+  //z-index: 9999;
+  background-color: $primary
+}
+
+.navbar-brand {
+  color: white;
+  position: fixed;
+}
+
+.navbar-nav > li > a {
+  color: white;
+  font-weight: 200;
+}
+
+
+.round-avatar {
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50px;
+  background-color: white;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+
+.navbar-nav>li>a.round-avatar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+

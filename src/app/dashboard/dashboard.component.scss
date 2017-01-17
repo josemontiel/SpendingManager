@@ -1,0 +1,28 @@
+@import "../variables";
+
+.nav-panel {
+  height: 100%;
+  overflow: auto;
+  padding: 100px 50px;
+  background-color: #ffffff;
+  border-right: 1px $unfocused solid;
+}
+
+h1, h2, h3 {
+  color: $primary
+}
+
+p {
+  color: #333;
+}
+
+body {
+  background-color: white !important;
+}
+
+
+.content-panel {
+  height: 100%;
+  overflow: auto;
+  padding: 100px 50px;
+}
