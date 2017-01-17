@@ -10,8 +10,6 @@ var spenditures = require('./routes/spenditures');
 var db = require('./models/db');
 var app = express();
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -59,9 +57,6 @@ app.all('/', function(req, res, next) {
 });
 
 app.use(express.static(__dirname +'/dist'));
-
-
-
 app.use('/api/user', users);
 app.use('/api/spenditure', spenditures);
 

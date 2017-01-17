@@ -10,7 +10,7 @@ import { map } from "rxjs/operator/map.d";
 import {CookieService} from "angular2-cookie/core";
 import {Subject} from "rxjs/Subject";
 
-export const URL:string = "http://localhost:8080/api/";
+export const URL:string = process.env.API_URL;
 
 @Injectable()
 export class UserService {

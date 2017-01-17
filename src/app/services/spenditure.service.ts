@@ -9,7 +9,7 @@ import {Observable} from "rxjs/Rx";
 import { map } from "rxjs/operator/map.d";
 import {CookieService} from "angular2-cookie/core";
 
-export const URL:string = "http://localhost:8080/api/";
+export const URL:string = process.env.API_URL;
 
 @Injectable()
 export class SpenditureService {
