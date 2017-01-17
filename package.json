@@ -39,6 +39,7 @@
     "ng2-bootstrap": "^1.2.2",
     "password-hash": "^1.2.2",
     "rxjs": "^5.0.3",
+    "serve-favicon": "^2.3.2",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23"
   },
