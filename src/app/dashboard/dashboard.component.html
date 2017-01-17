@@ -1,5 +1,5 @@
 <div>
-  <div class="col-lg-8 nav-panel">
+  <div class="col-lg-9 nav-panel">
 
     <h2>My Expenses</h2>
 
@@ -12,6 +12,7 @@
         <button class="btn btn-outline-secondary" (click)="onDateSendClick()">Send</button>
       </div>
     </header>
+
 
 
     <div style="text-align: center;">
@@ -33,9 +34,10 @@
         </div>
 
       </div>
+      <h3>Total Expenses: ${{total}}</h3>
     </div>
   </div>
-  <div class="col-lg-4 nav-panel">
+  <div class="col-lg-3 nav-panel">
     <add-spend *ngIf="!spenditureSelected" (onSpenditureAdded)="onSpenditureAdded($event)"></add-spend>
     <update-spend *ngIf="spenditureSelected" [spending]="spenditureSelected" (onSpenditureUpdated)="onSpenditureUpdated($event)"></update-spend>
   </div>

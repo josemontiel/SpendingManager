@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
         criteria = {when: {$gte: start, $lte: end}}
       }
 
-      Spenditure.find(criteria).sort({timestamp: 1}).exec(function(err, spenditures) {
+      Spenditure.find(criteria).sort({when: -1}).exec(function(err, spenditures) {
         if (err) {
           console.log(err);
           handleError(res, "Couldn't fetch spenditures", "Try again later", 500);

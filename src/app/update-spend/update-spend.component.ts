@@ -2,8 +2,8 @@ import { Component, OnInit, OnChanges, Input, Output, QueryList, ViewChildren, V
 import { Router } from '@angular/router';
 
 import {Spenditure} from "../models/Spenditure";
-import {SpenditureService} from "../spenditure.service";
-import {UserService} from "../user.service";
+import {SpenditureService} from "../services/spenditure.service";
+import {UserService} from "../services/user.service";
 import {ModalDirective} from "ng2-bootstrap/ng2-bootstrap";
 
 @Component({
@@ -13,20 +13,16 @@ import {ModalDirective} from "ng2-bootstrap/ng2-bootstrap";
 })
 export class UpdateSpendingComponent implements OnInit, OnChanges {
 
-  zone:NgZone;
-
   @Output() onSpenditureUpdated:EventEmitter<Spenditure> = new EventEmitter<Spenditure>();
 
-  @Input() spending:Spenditure;
+  @Input() public spending:Spenditure = new Spenditure();
 
   spendingDate:Date;
   spendingTime:Date;
 
   public showProgress:boolean = false;
 
-  constructor(private router:Router, private spenditureService:SpenditureService, private element:ElementRef) {
-    this.zone = new NgZone({enableLongStackTrace: false});
-    this.spending = new Spenditure();
+  constructor(private router:Router, public spenditureService:SpenditureService, private element:ElementRef) {
   }
 
 
@@ -47,8 +43,7 @@ export class UpdateSpendingComponent implements OnInit, OnChanges {
 
     this.spending.when = this.joinTime();
 
-    this.spenditureService.update(this.spending).subscribe(response => {
-      var spend = new Spenditure().deserialize(response.json());
+    this.spenditureService.update(this.spending).subscribe(spend => {
       this.showProgress = false;
       this.onSpenditureUpdated.emit(spend);
     }, (e) => {

@@ -1,4 +1,5 @@
-@import "variables.scss";
+@import "app/variables";
+@import "glyphicon.css";
 
 body {
   background-color: white;
@@ -7,17 +8,6 @@ body {
 
 * {
   font-family: 'Open Sans', sans-serif;
-}
-
-
-.rating-star {
-  color: #CCAC00;
-  font-size: 1.5em;
-}
-
-.rating-safety {
-  color: $primary;
-  font-size: 1.5em;
 }
 
 .spinner {
@@ -29,11 +19,11 @@ body {
 
 
 .bg-primary {
-  background-color: #1985A1 !important;
+  background-color: $primary !important;
 }
 
 .btn-primary {
-  background-color: #1985A1 !important;
+  background-color: $primary !important;
   color: white;
 }
 
@@ -49,19 +39,19 @@ body {
 }
 
 .btn-outline:hover {
-  color: #1985A1;
+  color: $primary;
   background-color: white;
 }
 
 .btn-outline-primary {
   @extend .btn-outline;
-  border-color: #1985A1;
-  color: #1985A1;
+  border-color: $primary;
+  color: $primary;
 }
 
 .btn-outline-primary:hover {
   color: white;
-  background-color: #1985A1;
+  background-color: $primary;
 }
 
 .text-primary {

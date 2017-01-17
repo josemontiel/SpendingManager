@@ -2,13 +2,13 @@
  * Created by Jose on 10/6/16.
  */
 import { Injectable, OnInit } from '@angular/core';
-import {User} from "./models/User";
+import {User} from "./../models/User";
 import { Router } from '@angular/router';
 import { Headers, Http } from '@angular/http';
-import '../../node_modules/rxjs/add/operator/toPromise';
-import {Observable} from "../../node_modules/rxjs/Observable";
-import {CookieService} from "../../node_modules/angular2-cookie/core";
-import {Subject} from "../../node_modules/rxjs/Subject";
+import {Observable} from "rxjs/Rx";
+import { map } from "rxjs/operator/map.d";
+import {CookieService} from "angular2-cookie/core";
+import {Subject} from "rxjs/Subject";
 
 export const URL:string = "http://localhost:8080/api/";
 
@@ -22,10 +22,10 @@ export class UserService {
   userChange:Subject<User> = new Subject<User>();
 
   constructor(private http:Http, private cookieService:CookieService, private router:Router) {
-    this.init();
+
   }
 
-  private init() {
+  public checkSession(): void {
     console.log("Update Session");
     this.updateSession()
       .subscribe(
@@ -51,36 +51,28 @@ export class UserService {
     return this.http.get(URL + "user", {headers: this.headers, withCredentials: true});
   }
 
-  loginWitEmail(user:User):Promise<User> {
+  loginWithEmail(user:User):Observable<User> {
     return this.http.post(URL + "user/login", JSON.stringify(user), {
-        headers: this.headers,
-        withCredentials: true
-      })
-      .toPromise()
-      .then(response => {
-        console.log("Response: " + response.json());
-        this.user = new User().deserialize(response.json());
-
-        return this.user;
-      })
-      .catch(this.handleError);
+      headers: this.headers,
+      withCredentials: true
+    }).map(response => {
+      var user = new User().deserialize(response.json());
+      this.user = user;
+      return user;
+    });
   };
 
 
-  createEmailUser(user:User):Promise<User> {
+  createEmailUser(user:User):Observable<User> {
     return this.http.post(URL + "user/signup", JSON.stringify(user), {headers: this.headers, withCredentials: true})
-      .toPromise()
-      .then(response => {
-        console.log("User Created", response);
-        this.user = new User().deserialize(response.json());
-
-        return this.user;
-      })
-      .catch(this.handleError);
+      .map(response => {
+        var user = new User().deserialize(response.json());
+        this.user = user;
+        return user;
+      });
   }
 
   logOut():void {
-
 
     this.http.get(URL + "user/logout", {
         headers: this.headers,

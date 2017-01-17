@@ -5,7 +5,7 @@
   </div>
   <div class="col-lg-4 center-block full-height">
     <div class="form-group form-signin">
-      <h2 class="form-signin-heading" style="text-align: left;">Welcome back,</h2>
+      <h2 class="form-signin-heading" style="text-align: left;">Sign In</h2>
       <input class="form-control form-control-lg" type="email" placeholder="Email" id="email-text-input"
              [(ngModel)]="inputEmail" (ngModelChange)="onFormChange($event)">
       <input class="form-control form-control-lg" type="password" placeholder="Password" id="password-text-input"
@@ -14,7 +14,7 @@
     </div>
 
     <div class="" style="text-align: center">
-      <button type="submit" class="btn btn-primary btn-lg col-xs-12" (click)="doLoginWithEmail()" [disabled]="!isLoginFormReady"><i class="fa fa-envelope"></i> Sign-In with Email
+      <button id="login-button" type="submit" class="btn btn-primary btn-lg col-xs-12" (click)="doLoginWithEmail()" [disabled]="!isLoginFormReady"><i class="fa fa-envelope"></i> Sign-In with Email
       </button>
       <div class="col-lg-12">
         <hr class="light"/>
@@ -29,14 +29,16 @@
 
       <input class="form-control form-control-lg" type="email" placeholder="Email" id="email-signup-text-input"
              [(ngModel)]="inputSignupEmail" (ngModelChange)="onFormChange($event)">
-      <input class="form-control form-control-lg" type="password" placeholder="**********" id="password-signup-text-input"
+      <input class="form-control form-control-lg" type="password" placeholder="Password" id="password-signup-text-input"
              [(ngModel)]="inputSignupPassword" (ngModelChange)="onFormChange($event)">
-      <input class="form-control form-control-lg" type="text" placeholder="First Name" id="firstname-signup-text-input"
+
+
+      <input class="form-control form-control-lg top-form" type="text" placeholder="First Name" id="firstname-signup-text-input"
              [(ngModel)]="inputSignupFirstName" (ngModelChange)="onFormChange($event)">
-      <input class="form-control form-control-lg" type="text" placeholder="Last Name" id="lastname-signup-text-input"
+      <input class="form-control form-control-lg bottom-form" type="text" placeholder="Last Name" id="lastname-signup-text-input"
              [(ngModel)]="inputSignupLastName" (ngModelChange)="onFormChange($event)">
 
-      <div class="btn-group" style="margin: 0 auto;">
+      <div class="btn-group center-block">
         <label class="btn btn-primary" [(ngModel)]="inputSignupType"
                btnRadio="user">User</label>
         <label class="btn btn-primary" [(ngModel)]="inputSignupType" btnRadio="admin">Admin</label>
@@ -45,7 +47,7 @@
     </div>
 
     <div class="" style="text-align: center">
-      <button type="submit" class="btn btn-primary btn-lg col-xs-12" (click)="doSignupWithEmail()" [disabled]="!isSignupFormReady"><i class="fa fa-envelope"></i> Sign Up with Email
+      <button id="signup-button" type="submit" class="btn btn-primary btn-lg col-xs-12" (click)="doSignupWithEmail()" [disabled]="!isSignupFormReady"><i class="fa fa-envelope"></i> Sign-Up with Email
       </button>
       <div class="col-lg-12">
         <hr class="light"/>

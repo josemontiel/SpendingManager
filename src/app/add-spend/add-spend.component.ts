@@ -2,8 +2,8 @@ import { Component, OnInit, Output, QueryList, ViewChildren, ViewChild, EventEmi
 import { Router } from '@angular/router';
 
 import {Spenditure} from "../models/Spenditure";
-import {SpenditureService} from "../spenditure.service";
-import {UserService} from "../user.service";
+import {SpenditureService} from "../services/spenditure.service";
+import {UserService} from "../services/user.service";
 import {ModalDirective} from "ng2-bootstrap/ng2-bootstrap";
 
 @Component({
@@ -12,8 +12,6 @@ import {ModalDirective} from "ng2-bootstrap/ng2-bootstrap";
   styleUrls: ['./add-spend.component.scss'],
 })
 export class AddSpendingComponent implements OnInit {
-
-  zone:NgZone;
 
   @Output() onSpenditureAdded:EventEmitter<Spenditure> = new EventEmitter<Spenditure>();
 
@@ -24,8 +22,7 @@ export class AddSpendingComponent implements OnInit {
 
   public showProgress:boolean = false;
 
-  constructor(private router:Router, private spenditureService:SpenditureService, private element:ElementRef) {
-    this.zone = new NgZone({enableLongStackTrace: false});
+  constructor(private router:Router, public spenditureService:SpenditureService, private element:ElementRef) {
     this.spending = new Spenditure();
   }
 
@@ -43,9 +40,8 @@ export class AddSpendingComponent implements OnInit {
     this.spending.when = this.joinTime();
 
     this.spenditureService.add(this.spending)
-      .subscribe(response => {
+      .subscribe(spend => {
           this.showProgress = false;
-          var spend = new Spenditure().deserialize(response.json());
           this.onSpenditureAdded.emit(spend);
 
         },

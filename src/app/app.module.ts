@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import {UserLoginComponent} from "./user-login/user-login.component";
 import { Ng2BootstrapModule } from 'ng2-bootstrap';
 import {NavbarComponent} from "./navbar/navbar.component";
-import {UserService} from "./user.service";
-import {SpenditureService} from "./spenditure.service"
+import {UserService} from "./services/user.service";
+import {SpenditureService} from "./services/spenditure.service"
 import {CookieService} from "angular2-cookie/core";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AddSpendingComponent} from "./add-spend/add-spend.component";
@@ -23,7 +23,7 @@ import {UpdateSpendingComponent} from "./update-spend/update-spend.component";
     NavbarComponent,
     DashboardComponent,
     AddSpendingComponent,
-    UpdateSpendingComponent
+    UpdateSpendingComponent,
   ],
   imports: [
     Ng2BootstrapModule.forRoot(),

@@ -2,13 +2,12 @@
  * Created by Jose on 10/6/16.
  */
 import { Injectable, OnInit } from '@angular/core';
-import {Spenditure} from "./models/Spenditure";
+import {Spenditure} from "./../models/Spenditure";
 import { Router } from '@angular/router';
 import { Headers, Http } from '@angular/http';
-import '../../node_modules/rxjs/add/operator/toPromise';
-import {Observable} from "../../node_modules/rxjs/Observable";
-import {CookieService} from "../../node_modules/angular2-cookie/core";
-import {Subject} from "../../node_modules/rxjs/Subject";
+import {Observable} from "rxjs/Rx";
+import { map } from "rxjs/operator/map.d";
+import {CookieService} from "angular2-cookie/core";
 
 export const URL:string = "http://localhost:8080/api/";
 
@@ -22,23 +21,38 @@ export class SpenditureService {
 
   }
 
-  getMySpenditures(start:number, end:number):Observable<any> {
+  getMySpenditures(start:number, end:number): Observable<Spenditure[]> {
     return this.http.get(URL + "spenditure?start=" + start + "&end=" + end, {
-        headers: this.headers,
-        withCredentials: true
+      headers: this.headers,
+      withCredentials: true
+    }).map(response => {
+      var array = response.json();
+      console.log(JSON.stringify(array));
+      var spenditures = [];
+      for (var i = 0; i < array.length; i++) {
+        spenditures[i] = new Spenditure().deserialize(array[i]);
+      }
+
+      return spenditures;
+    })
+
+  };
+
+  add(spend:Spenditure):Observable<Spenditure> {
+    return this.http.post(URL + "spenditure", JSON.stringify(spend), {headers: this.headers, withCredentials: true})
+      .map(response=> {
+        return new Spenditure().deserialize(response.json());
       });
-
   };
 
-  add(spend:Spenditure):Observable<any> {
-    return this.http.post(URL + "spenditure", JSON.stringify(spend), {headers: this.headers, withCredentials: true});
-  };
-
-  update(spend:Spenditure):Observable<any> {
+  update(spend:Spenditure):Observable<Spenditure> {
     return this.http.post(URL + "spenditure/" + spend._id, JSON.stringify(spend), {
         headers: this.headers,
         withCredentials: true
       })
+      .map(response=> {
+        return new Spenditure().deserialize(response.json());
+      });
 
   };
 
