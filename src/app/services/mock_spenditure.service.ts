@@ -11,7 +11,6 @@ import {CookieService} from "angular2-cookie/core";
 import {SpenditureService} from "./spenditure.service";
 import {User} from "../models/User";
 
-export const URL:string = "http://localhost:8080/api/";
 
 @Injectable()
 export class MockSpenditureService extends SpenditureService {

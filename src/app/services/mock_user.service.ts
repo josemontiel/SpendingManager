@@ -11,7 +11,6 @@ import {CookieService} from "angular2-cookie/core";
 import {UserService} from "./user.service";
 import {Subject} from "rxjs/Subject";
 
-export const URL:string = "http://localhost:8080/api/";
 
 @Injectable()
 export class MockUserService extends UserService {

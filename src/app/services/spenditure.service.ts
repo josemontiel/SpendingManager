@@ -9,7 +9,7 @@ import {Observable} from "rxjs/Rx";
 import { map } from "rxjs/operator/map.d";
 import {CookieService} from "angular2-cookie/core";
 
-export const URL:string = process.env.API_URL;
+export const URL:string = "api/";
 
 @Injectable()
 export class SpenditureService {
