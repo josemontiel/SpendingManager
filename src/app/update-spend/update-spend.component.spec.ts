@@ -67,33 +67,6 @@ describe('Update-Spend: component', () => {
     fixture.detectChanges();
   });
 
-  ////specs
-  //it('should fill form from input Spenditure', done => {
-  //
-  //  let input: Spenditure = {
-  //    _id: "anid",
-  //    user_id: "user_id",
-  //    description: 'This is a test',
-  //    when: 1484680667070,
-  //    amount: 10,
-  //  };
-  //
-  //  component.spending = input;
-  //
-  //  fixture.detectChanges();
-  //
-  //  fixture.whenStable().then(() => {
-  //    let element = fixture.nativeElement;
-  //    let desc = element.querySelector('#description-text-input');
-  //    expect(desc.value).toBe(input.description);
-  //    expect(element.querySelector('#amount-text-input').valueAsNumber).toBe(input.amount);
-  //    expect(component.joinTime()).toBe(input.when);
-  //    done();
-  //  })
-  //
-  //
-  //
-  //});
 
   //specs
   it('should match with two way binding Spenditure made by form', done => {
